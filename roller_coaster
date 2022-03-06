@@ -1,0 +1,24 @@
+height=int(input("enter your height: "))
+if height>=120:
+    print("you can ride")
+    age=int(input("enter your age: "))
+    if age<12:
+        bill=5
+        print("child ticket os of $5")
+    elif age<=18:
+        bill=7
+        print("teenagers ticket is of $7")
+    elif age>=45 and age<=55:
+        bill=0
+        print("no need to pay")
+    else:
+        bill=12
+        print("adult ticket is of $12")
+    want_photos=input("do you want photos 'y' or 'n' ")
+    if want_photos=='y':
+        total_bill=bill+3
+        print(f"please pay ${total_bill}")
+    else:
+        print(f"you need to pay ${bill}")
+else:
+    print("you cant ride")
