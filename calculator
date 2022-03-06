@@ -1,0 +1,66 @@
+start_again = True
+while start_again:
+    from replit import clear
+    from art import logo
+
+    print(logo)
+
+
+    def add(number, next_number):
+        """addition"""
+        return number + next_number
+
+
+    def sub(number, next_number):
+        """subtraction"""
+        return number - next_number
+
+
+    def mul(number, next_number):
+        """multiplication"""
+        return number * next_number
+
+
+    def div(number, next_number):
+        """division"""
+        return number / next_number
+
+
+    def results(number, operator, next_number, operation):
+        main_result = f"{number} {operator} {next_number} = {operation}"
+        return main_result
+
+
+    want_continue = True
+    number = float(input("Whats the first number: "))
+    op = """+
+  -
+  *
+  /"""
+    print(op)
+
+    while want_continue:
+        operator = input("Pick an operation: ")
+        next_number = float(input("Whats next number: "))
+        if operator == '+':
+            print(results(number, operator, next_number, add(number, next_number)))
+            result = add(number, next_number)
+        elif operator == '-':
+            print(results(number, operator, next_number, sub(number, next_number)))
+            result = sub(number, next_number)
+        elif operator == '*':
+            print(results(number, operator, next_number, mul(number, next_number)))
+            result = mul(number, next_number)
+        elif operator == '/':
+            print(results(number, operator, next_number, div(number, next_number)))
+            result = div(number, next_number)
+        continue_calc = input(
+            f"Type 'y' to continue calculating with {result} or type 'n' to start a new calculation: ")
+        if continue_calc == 'n':
+            want_continue = False
+            clear()
+        else:
+            number = result
+
+
+
