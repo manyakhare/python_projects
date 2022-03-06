@@ -1,0 +1,8 @@
+import random as rd
+names_string = input("Give me everyone's name separated by comma. ")
+names = names_string.split(",")
+#random_name = rd.choice(names)
+name = len(names)
+random_names = rd.randint(0 , name-1)
+random_name = names[random_names]
+print(random_name)
