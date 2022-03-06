@@ -1,0 +1,6 @@
+age=int(input("enter your age? "))
+age_new=90-age
+days=age_new*365
+month=age_new*12
+weeks=age_new*52
+print(f"no of {days} days, {month} months, {weeks} weeks left")
