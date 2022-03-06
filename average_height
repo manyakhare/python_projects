@@ -1,0 +1,17 @@
+student_height = input("input a list of student height").split()
+for n in range(0, len(student_height)):
+    student_height[n] = int(student_height[n])
+print(student_height)
+total = 0
+for i in student_height:
+    total = total+1
+average_sum = 0
+for students in student_height:
+    average_sum += students
+average_height = average_sum/total
+print(round(average_height))
+# print("{:.0f}".format(average_height))
+
+# total = len(student_height)
+# total_sum = sum(student_height)
+# print(round(total_sum/total))
