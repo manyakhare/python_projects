@@ -1,0 +1,74 @@
+import random
+rock = '''
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+'''
+
+paper = '''
+    _______
+---'   ____)____
+          ______)
+          _______)
+         _______)
+---.__________)
+'''
+
+scissors = '''
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+'''
+
+# if person_choice >= 3 or person_choice < 0:
+#     print("invalid")
+# elif person_choice == 0 and computer_choice == 2:
+#     print("you win")
+# elif person_choice == 2 and computer_choice == 0:
+#     print("you loose")
+# elif person_choice > int(computer_choice):
+#     print("you won")
+# elif person_choice == computer_choice:
+#     print("draw")
+# else:
+#     print("you loose")
+
+
+def play_game():
+    game = [rock, paper, scissors]
+    print(game)
+    person_choice = int(input("What do you choose? Type 0 for rock, 1 for paper, 2 for scissor: "))
+    print(game[person_choice])
+
+    computer_choice = random.randint(0, 2)
+    print(game[computer_choice])
+    print("computer choice")
+    if person_choice >= 3 or person_choice < 0:
+        print("invalid")
+    elif person_choice == computer_choice:
+        print("draw")
+    elif person_choice == 0 and computer_choice == 2:
+        print("you won")
+    elif computer_choice == 0 and person_choice == 2:
+        print("you loose")
+    elif person_choice > computer_choice:
+        print("you won")
+    else:
+        print("you loose")
+
+
+want_continue = True
+while want_continue:
+    play_game()
+    want_to_continue = input("Do you want to continue y or n? ").lower()
+    if want_to_continue == 'n':
+        want_continue = False
+        print("thank you for playing")
+
+
