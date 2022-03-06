@@ -1,0 +1,14 @@
+from turtle import Turtle, Screen
+import random
+
+tim = Turtle()
+colors = ['red', 'blue', 'green', 'yellow', 'maroon', 'pink', 'grey', 'brown', 'purple']
+for edges in range(3, 11):
+    angle = float(360/edges)
+    tim.color(colors[edges-3])
+    for _ in range(edges):
+        tim.forward(100)
+        tim.left(angle)
+
+screen = Screen()
+screen.exitonclick()
