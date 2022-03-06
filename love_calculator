@@ -1,0 +1,23 @@
+print("welcome to love calculator")
+name1=input("enter your name: ")
+name2=input("enter their name: ")
+name=name1.lower()+name2.lower()
+#true
+count_t=name.count('t')
+count_r=name.count('r')
+count_u=name.count('u')
+count_e=name.count('e')
+true=count_t+count_r+count_u+count_e
+#love
+count_l=name.count('l')
+count_o=name.count('o')
+count_v=name.count('v')
+count_e=name.count('e')
+love=count_l+count_o+count_v+count_e
+true_love=int(f"{true}{love}")
+if true_love <= 10 and true_love >= 90:
+    print(f"your score is {true_love}, you guys are like coke and mentos")
+elif true_love>=45 and true_love<=55:
+    print(f"your score is {true_love}, you guys are alright together")
+else:
+    print(f"your score is {true_love}")
