@@ -1,0 +1,14 @@
+height=float(input("enter your height in m: "))
+weight=float(input("enter your weight in kg: "))
+bmi_is=float(weight/(height**2))
+bmi="{:.0f}".format(bmi_is)
+if bmi_is<18.5:
+    print("you are underweight")
+elif bmi_is<=25:
+    print("you have normal weight")
+elif bmi_is<=30:
+    print("you are overweight")
+elif bmi_is<=35:
+    print("you are obese")
+else:
+    print("you need to visit doctor")
