@@ -1,0 +1,23 @@
+print("welcome to pizza mania")
+size_of_pizza = input("what size of pizza do you want small, medium, large? s,m,l? ")
+pepperoni = input("do you want pepperoni in it 'y' or 'n'? ")
+extra_cheese = input("do you want extra cheese 'y' or 'n'? ")
+if size_of_pizza == 's':
+    bill = 15
+    if pepperoni == 'y':
+        bill += 2
+elif size_of_pizza == 'm':
+    bill = 20
+    if pepperoni == 'y':
+        bill += 3
+elif size_of_pizza == 'l':
+    bill = 25
+    if pepperoni == 'y':
+        bill += 3
+else:
+    print("error")
+if extra_cheese == 'y':
+    bill += 1
+    print(f"your total bill is ${bill}")
+else:
+    print(f"your total bil is: ${bill}")
