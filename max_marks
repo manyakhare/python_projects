@@ -1,0 +1,9 @@
+student_marks = input("Enter the marks of students with space").split()
+for marks in range(0, len(student_marks)):
+    student_marks[marks] = int(student_marks[marks])
+print(student_marks)
+highest_score = 0
+for maximum in student_marks:
+    if maximum > highest_score:
+        highest_score = maximum
+print(f"the highest score is {highest_score}")
