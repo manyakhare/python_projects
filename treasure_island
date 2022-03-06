@@ -1,0 +1,19 @@
+print("welcome to treasure island game")
+print("your mission is to find the treasure")
+road = (input("You're at a cross road. where do you want to go? type 'left' or 'right? ")).lower()
+if road == 'left':
+    lake = (input("you came to a lake."
+                  " There is an island in the middle of the lake. Type 'wait' to wait for a boat. "
+                  "Type 'swim' to swim across ")).lower()
+    if lake == 'wait':
+        door = (input("You arrive at the island unharmed. "
+                      "There are three doors in a house. one is red, one yellow and one blue."
+                      " which color do you choose ")).lower()
+        if door == 'yellow':
+            print("you won")
+        else:
+            print("you lost")
+    else:
+        print("you lost")
+else:
+    print("you lost")
