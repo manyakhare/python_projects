@@ -1,46 +1,40 @@
-# with open("weather_data.csv", mode="r") as data_file:
-#     print(data_file.readlines())
+import time
+from turtle import Screen
+from player import Player
+from car_manager import CarManager
+from scoreboard import Scoreboard
 
-# import csv
+screen = Screen()
+screen.setup(width=600, height=600)
+screen.tracer(0)
 
-# with open("weather_data.csv") as data_file:
-#     data = csv.reader(data_file)
-#     temperature = []
-#     for row in data:
-#         if row[1] != "temp":
-#             temperature.append(int(row[1]))
-#     print(temperature)
+player = Player()
+car_manager = CarManager()
+scoreboard = Scoreboard()
 
-# import pandas
-#
-# data = pandas.read_csv("weather_data.csv")
-# print(data["temp"])
-# data_dict = data.to_dict()
-# print(data_dict)
-# data_list = data["temp"].to_list()
-# print(data_list)
-# avg = sum(data_list)/len(data_list)
-# print(avg)
-# print(data["temp"].mean())
-# print(data["temp"].max())
+screen.listen()
+screen.onkey(player.go_up, "Up")
 
-# print(data[data.temp == data.temp.max()])
-# monday = data[data.day == "Monday"]
-# far = (int(monday.temp) * 9 / 5) + 32
-# print(far)
+game_is_on = True
+while game_is_on:
+    time.sleep(0.1)
+    screen.update()
+
+    car_manager.create_car()
+    car_manager.move_cars()
+
+    # Detect collision with car
+    for car in car_manager.all_cars:
+        if car.distance(player) < 20:
+            game_is_on = False
+            scoreboard.game_over()
+
+    # Detect successful crossing
+    if player.is_at_finish_line():
+        player.go_to_start()
+        car_manager.level_up()
+        scoreboard.increase_level()
 
 
-import pandas
-
-squirrel_data = pandas.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv")
-Gray_squirrel = len(squirrel_data[squirrel_data["Primary Fur Color"] == "Gray"])
-Cinnamon_squirrel = len(squirrel_data[squirrel_data["Primary Fur Color"] == "Cinnamon"])
-Black_squirrel = len(squirrel_data[squirrel_data["Primary Fur Color"] == "Black"])
-
-data_dict = {
-    "Fur color" : ["Gray", "Cinnamon", "Black"],
-    "count" : [Gray_squirrel, Cinnamon_squirrel, Black_squirrel]
-}
-df = pandas.DataFrame(data_dict)
-df.to_csv("squirrel_count.csv")
+screen.exitonclick()
 
