@@ -1,48 +1,46 @@
-from turtle import Screen
-from paddle import Paddle
-from ball import Ball
-from scoreboard import Scoreboard
-import time
+# with open("weather_data.csv", mode="r") as data_file:
+#     print(data_file.readlines())
 
-screen = Screen()
-screen.bgcolor("black")
-screen.setup(width=800, height=600)
-screen.title("Pong Game")
-screen.tracer(0)
+# import csv
 
-r_paddle = Paddle((350, 0))
-l_paddle = Paddle((-350, 0))
-ball = Ball()
-scoreboard = Scoreboard()
+# with open("weather_data.csv") as data_file:
+#     data = csv.reader(data_file)
+#     temperature = []
+#     for row in data:
+#         if row[1] != "temp":
+#             temperature.append(int(row[1]))
+#     print(temperature)
 
-screen.listen()
-screen.onkey(r_paddle.up, "Up")
-screen.onkey(r_paddle.down, "Down")
+# import pandas
+#
+# data = pandas.read_csv("weather_data.csv")
+# print(data["temp"])
+# data_dict = data.to_dict()
+# print(data_dict)
+# data_list = data["temp"].to_list()
+# print(data_list)
+# avg = sum(data_list)/len(data_list)
+# print(avg)
+# print(data["temp"].mean())
+# print(data["temp"].max())
 
-screen.onkey(l_paddle.up, "w")
-screen.onkey(l_paddle.down, "s")
+# print(data[data.temp == data.temp.max()])
+# monday = data[data.day == "Monday"]
+# far = (int(monday.temp) * 9 / 5) + 32
+# print(far)
 
-game_is_on = True
-while game_is_on:
-    time.sleep(ball.move_speed)
-    screen.update()
-    ball.move()
 
-    # Detect collision with wall
-    if ball.ycor() > 280 or ball.ycor() < -280:
-        ball.bounce_y()
+import pandas
 
-    # Detect collision with paddles
-    if ball.distance(r_paddle) < 50 and ball.xcor() > 320 or ball.distance(l_paddle) < 50 and ball.xcor() < -320:
-        ball.bounce_x()
+squirrel_data = pandas.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv")
+Gray_squirrel = len(squirrel_data[squirrel_data["Primary Fur Color"] == "Gray"])
+Cinnamon_squirrel = len(squirrel_data[squirrel_data["Primary Fur Color"] == "Cinnamon"])
+Black_squirrel = len(squirrel_data[squirrel_data["Primary Fur Color"] == "Black"])
 
-    # detect if the ball is missed
-    if ball.xcor() > 380:
-        ball.reset_position()
-        scoreboard.l_paddle_won()
+data_dict = {
+    "Fur color" : ["Gray", "Cinnamon", "Black"],
+    "count" : [Gray_squirrel, Cinnamon_squirrel, Black_squirrel]
+}
+df = pandas.DataFrame(data_dict)
+df.to_csv("squirrel_count.csv")
 
-    if ball.xcor() < -380:
-        ball.reset_position()
-        scoreboard.r_paddle_won()
-
-screen.exitonclick()
