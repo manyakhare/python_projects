@@ -1,43 +1,40 @@
-from turtle import Screen
-from snake import Snake
-from food import Food
-from scoreboard import Scoreboard
 import time
+from turtle import Screen
+from player import Player
+from car_manager import CarManager
+from scoreboard import Scoreboard
 
 screen = Screen()
 screen.setup(width=600, height=600)
-screen.bgcolor("black")
-screen.title("My Snake Game")
 screen.tracer(0)
 
-snake = Snake()
-food = Food()
+player = Player()
+car_manager = CarManager()
 scoreboard = Scoreboard()
 
 screen.listen()
-screen.onkey(snake.up, "Up")
-screen.onkey(snake.down, "Down")
-screen.onkey(snake.left, "Left")
-screen.onkey(snake.right, "Right")
+screen.onkey(player.go_up, "Up")
 
 game_is_on = True
 while game_is_on:
-    screen.update()
     time.sleep(0.1)
-    snake.move()
+    screen.update()
 
-    # detect food and snake collision
-    if snake.head.distance(food) < 15:
-        food.refresh()
-        snake.extend_segment()
-        scoreboard.increase_score()
+    car_manager.create_car()
+    car_manager.move_cars()
 
-    if snake.head.xcor() > 285 or snake.head.xcor() < -285 or snake.head.ycor() > 285 or snake.head.ycor() < -285:
-        scoreboard.reset()
-        snake.reset()
+    # Detect collision with car
+    for car in car_manager.all_cars:
+        if car.distance(player) < 20:
+            game_is_on = False
+            scoreboard.game_over()
 
-    for segment in snake.segments[1:]:
-        if snake.head.distance(segment) < 10:
-            scoreboard.reset()
-            snake.reset()
+    # Detect successful crossing
+    if player.is_at_finish_line():
+        player.go_to_start()
+        car_manager.level_up()
+        scoreboard.increase_level()
+
+
 screen.exitonclick()
+
